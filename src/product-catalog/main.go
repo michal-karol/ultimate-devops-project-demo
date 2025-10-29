@@ -113,6 +113,7 @@ func initMeterProvider() *sdkmetric.MeterProvider {
 }
 
 func main() {
+	// CI trigger: validating workflow by touching application entrypoint.
 	tp := initTracerProvider()
 	defer func() {
 		if err := tp.Shutdown(context.Background()); err != nil {
@@ -315,7 +316,6 @@ func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error)
 		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 	)
 }
-
 
 
 
